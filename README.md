@@ -1,25 +1,30 @@
-Sync directory contents over HTTP using PHP
-===
+# Sync directory contents over HTTP using PHP
 
 Use these classes to recursively sync the contents of two folders on different servers. The source must have
 a web server although the directory being synced does not have to be web accessible. The client initiates the
 connection and can be either another web server or a command line script.
 
-How it works
----
 
-# Client collects list of existing files in destination folder (and subfolders), with size and modified dates
-# Client POSTs list to the server
-# Server gets list of files in source folder on server and compares this with list of files from client
-# Server returns list of new or modified files present on server
-# Client requests contents of each new or modified file and saves it to destination folder
-# Client sets last modified time of file to match server
+## Install
+
+If using Composer, add `"outlandish/sync":"1.*@dev"` to your requirements.
+
+Otherwise, just download and `require` the classes as normal.
+
+
+## How it works
+
+1. Client collects list of existing files in destination folder (and subfolders), with size and modified dates
+2. Client POSTs list to the server
+3. Server gets list of files in source folder on server and compares this with list of files from client
+4. Server returns list of new or modified files present on server
+5. Client requests contents of each new or modified file and saves it to destination folder
+6. Client sets last modified time of file to match server
 
 No attempt is made to send diffs; this is not rsync. Symlinks are not explicitly supported. All communication
 is via JSON data in the request/response body.
 
-Example
----
+## Example
 
 On the server, e.g. `example.com/remote.php`:
 
@@ -44,11 +49,3 @@ const PATH = '/path/to/destination'; //target for files synced from server
 $client = new \Outlandish\Sync\Client(SECRET, PATH);
 $client->run('http://example.com/remote.php'); //connect to server and start sync
 ```
-
-Install
----
-
-If using Composer, add `outlandish/sync` to your requirements with a version of `1.*@dev`.
-
-Otherwise, just download and `require` the classes as normal.
-

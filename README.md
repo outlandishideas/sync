@@ -49,3 +49,10 @@ const PATH = '/path/to/destination'; //target for files synced from server
 $client = new \Outlandish\Sync\Client(SECRET, PATH);
 $client->run('http://example.com/remote.php'); //connect to server and start sync
 ```
+
+## FAQ
+
+### Why not just use rsync?
+
+Sometimes you need code to be portable across a range of hosting environments so you can't rely on rsync, scp or 
+other external dependencies.

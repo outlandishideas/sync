@@ -31,3 +31,10 @@ const PATH = '/path/to/destination'; //target for files synced from server
 $client = new \Outlandish\Sync\Client(SECRET, PATH);
 $client->run('http://example.com/remote.php'); //connect to server and start sync
 ```
+
+Install
+---
+
+If using Composer, add `outlandish/sync` to your requirements with a version of `1.*@dev`.
+
+Otherwise, just download and `require` the classes as normal.

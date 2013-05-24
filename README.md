@@ -5,6 +5,19 @@ Use these classes to recursively sync the contents of two folders on different s
 a web server although the directory being synced does not have to be web accessible. The client initiates the
 connection and can be either another web server or a command line script.
 
+How it works
+---
+
+# Client collects list of existing files in destination folder (and subfolders), with size and modified dates
+# Client POSTs list to the server
+# Server gets list of files in source folder on server and compares this with list of files from client
+# Server returns list of new or modified files present on server
+# Client requests contents of each new or modified file and saves it to destination folder
+# Client sets last modified time of file to match server
+
+No attempt is made to send diffs; this is not rsync. Symlinks are not explicitly supported. All communication
+is via JSON data in the request/response body.
+
 Example
 ---
 
@@ -38,3 +51,4 @@ Install
 If using Composer, add `outlandish/sync` to your requirements with a version of `1.*@dev`.
 
 Otherwise, just download and `require` the classes as normal.
+

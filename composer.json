@@ -1,5 +1,6 @@
 {
     "name": "outlandish/sync",
+	"description":"Sync directory contents over HTTP using PHP",
     "license": "MIT",
     "authors": [
         {
@@ -13,7 +14,7 @@
     },
 	"autoload":{
 		"psr-0":{
-			"Outlandish\\Sync":"Outlandish/Sync"
+			"Outlandish":"src/"
 		}
 	}
 }

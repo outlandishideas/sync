@@ -53,7 +53,7 @@ class Client extends AbstractSync {
 			touch($absolutePath, $info['timestamp']);
 
 			//update permissions to match server
-			chmod($absolutePath, $info['fileperm']);
+			chmod($absolutePath, octdec(intval($info['fileperm'])));
 		}
 	}
 

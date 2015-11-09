@@ -38,7 +38,8 @@ abstract class AbstractSync {
 		$files = array();
 		foreach ($iterator as $fileInfo) {
 			$fullPath = str_replace(DIRECTORY_SEPARATOR, '/', substr($fileInfo->getRealPath(), $pathPrefixLength));
-			$files[$fullPath] = array($fileInfo->getSize(), $fileInfo->getMTime());
+			$filePermission = substr(sprintf('%o', fileperms( $fileInfo->getRealPath() )), -4);
+			$files[$fullPath] = array('size' => $fileInfo->getSize(), 'timestamp' => $fileInfo->getMTime(), 'fileperm' => $filePermission);
 		}
 
 		return $files;

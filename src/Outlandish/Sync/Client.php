@@ -50,7 +50,10 @@ class Client extends AbstractSync {
 			file_put_contents($absolutePath, $response);
 
 			//update modified time to match server
-			touch($absolutePath, $info[1]);
+			touch($absolutePath, $info['timestamp']);
+
+			//update permissions to match server
+			chmod($absolutePath, octdec(intval($info['fileperm'])));
 		}
 	}
 
